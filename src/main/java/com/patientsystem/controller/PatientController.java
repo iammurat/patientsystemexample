@@ -1,17 +1,18 @@
 package com.patientsystem.controller;
 
 import com.patientsystem.entity.Patient;
+import com.patientsystem.exceptions.NoPatientException;
 import com.patientsystem.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 import static com.patientsystem.controller.config.Paths.PATH_ID;
 import static com.patientsystem.controller.config.Paths.PATIENTS;
@@ -24,15 +25,16 @@ public class PatientController
 	private PatientService patientService;
 
 	@GetMapping( PATH_ID )
-	public Patient getById( @PathVariable Long id )
+	public Patient getById( @PathVariable Long id ) throws NoPatientException
 	{
 		return patientService.getById( id );
 	}
 
 	@GetMapping
-	public List<Patient> getAll()
+	public Page<Patient> getPage( @RequestParam Integer page, @RequestParam Integer size,
+								  @RequestParam( required = false ) String sortby )
 	{
-		return patientService.getAll();
+		return patientService.getPage( page, size, sortby );
 	}
 
 	@RequestMapping( method = { RequestMethod.POST, RequestMethod.PUT } )

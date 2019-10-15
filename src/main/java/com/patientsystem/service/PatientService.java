@@ -1,11 +1,12 @@
 package com.patientsystem.service;
 
 import com.patientsystem.entity.Patient;
+import com.patientsystem.exceptions.NoPatientException;
 import com.patientsystem.repository.PatientRepository;
+import com.patientsystem.util.PaginationUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class PatientService
@@ -13,15 +14,18 @@ public class PatientService
 	@Autowired
 	private PatientRepository patientRepository;
 
-	public Patient getById( Long id )
+	@Autowired
+	private PaginationUtil paginationUtil;
+
+	public Patient getById( Long id ) throws NoPatientException
 	{
 		return patientRepository.findById( id )
-								.get();
+								.orElseThrow( NoPatientException::new );
 	}
 
-	public List<Patient> getAll()
+	public Page<Patient> getPage( int page, int size, String sortby )
 	{
-		return null; //TODO
+		return patientRepository.findAll( paginationUtil.createPageable( page, size, sortby ) );
 	}
 
 	public Patient save( Patient patient )
