@@ -15,7 +15,7 @@ import java.util.stream.Collectors;
 public class PaginationUtil
 {
 	public static final String DELIMITER = ",";
-	public static char DESC_CHAR = '-';
+	public static final char DESC_CHAR = '-';
 
 	private enum MyDirection
 	{

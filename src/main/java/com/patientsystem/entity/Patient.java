@@ -1,8 +1,11 @@
 package com.patientsystem.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import java.util.List;
 
 @Entity
 public class Patient
@@ -12,6 +15,10 @@ public class Patient
 	private Long id;
 	private String name;
 	private String surname;
+	private Integer age;
+
+	@OneToMany(mappedBy = "patient")
+	private List<Appointment> appointments;
 
 	public Long getId()
 	{
@@ -41,5 +48,25 @@ public class Patient
 	public void setSurname( String surname )
 	{
 		this.surname = surname;
+	}
+
+	public Integer getAge()
+	{
+		return age;
+	}
+
+	public void setAge( Integer age )
+	{
+		this.age = age;
+	}
+
+	public List<Appointment> getAppointments()
+	{
+		return appointments;
+	}
+
+	public void setAppointments( List<Appointment> appointments )
+	{
+		this.appointments = appointments;
 	}
 }

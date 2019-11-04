@@ -32,7 +32,8 @@ public class PatientController
 
 	@GetMapping
 	public Page<Patient> getPage( @RequestParam Integer page, @RequestParam Integer size,
-								  @RequestParam( required = false ) String sortby )
+								  @RequestParam( required = false ) String sortby,
+								  @RequestParam( required = false ) String name)
 	{
 		return patientService.getPage( page, size, sortby );
 	}
