@@ -11,7 +11,7 @@ public class BusinessConfiguration
 	public static final String MIN_AGE_PARAM = "${patient.minAge}";
 
 	@Value( MIN_AGE_PARAM )
-	private int minAge;
+	private int minAge=18;
 
 	public int getMinAge()
 	{
