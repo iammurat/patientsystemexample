@@ -1,6 +1,7 @@
 package com.patientsystem.controller;
 
 import com.patientsystem.entity.Patient;
+import com.patientsystem.exceptions.InvalidPatientAgeException;
 import com.patientsystem.exceptions.NoPatientException;
 import com.patientsystem.service.PatientService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +40,7 @@ public class PatientController
 	}
 
 	@RequestMapping( method = { RequestMethod.POST, RequestMethod.PUT } )
-	public Patient save( @RequestBody Patient patient )
+	public Patient save( @RequestBody Patient patient ) throws InvalidPatientAgeException
 	{
 		return patientService.save( patient );
 	}
