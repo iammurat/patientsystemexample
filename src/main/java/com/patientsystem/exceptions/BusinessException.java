@@ -1,13 +1,9 @@
 package com.patientsystem.exceptions;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.ResponseStatus;
-
-@ResponseStatus( value = HttpStatus.BAD_REQUEST, reason = "Bad request!!!" )
-public class BusinessException extends Exception
+public class BusinessException extends LocalizedException
 {
-	public BusinessException( String message )
+	public BusinessException( String message, String localeMessage )
 	{
-		super( message );
+		super( message, localeMessage );
 	}
 }

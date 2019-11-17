@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus( value = HttpStatus.BAD_REQUEST, reason = "Invalid age!" )
 public class InvalidPatientAgeException extends BusinessException
 {
-	public InvalidPatientAgeException()
+	public InvalidPatientAgeException( String message, String localeMessage )
 	{
-		super( "Invalid age!" );
+		super( message, localeMessage );
 	}
 }

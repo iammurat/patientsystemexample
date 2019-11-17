@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @ResponseStatus( value = HttpStatus.NOT_FOUND, reason = "Bad request!" )
 public class NoPatientException extends BusinessException
 {
-	public NoPatientException()
+	public NoPatientException( String message, String localeMessage )
 	{
-		super( "No patient has found!" );
+		super( message, localeMessage );
 	}
 }
