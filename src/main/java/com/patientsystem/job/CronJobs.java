@@ -35,7 +35,7 @@ public class CronJobs
 		System.out.println( getDate() + " -- per second with cron 10-50, TUE-WED" );
 	}*/
 
-	@Scheduled( cron = "* * * * * *" )
+	//@Scheduled( cron = "* * * * * *" )
 	public void printTimePerSecondAll()
 	{
 		try

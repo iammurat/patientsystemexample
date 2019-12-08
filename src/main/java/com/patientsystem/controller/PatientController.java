@@ -4,6 +4,8 @@ import com.patientsystem.entity.Patient;
 import com.patientsystem.exceptions.InvalidPatientAgeException;
 import com.patientsystem.exceptions.NoPatientException;
 import com.patientsystem.service.PatientService;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -22,12 +24,20 @@ import static com.patientsystem.controller.config.Paths.PATIENTS;
 @RequestMapping( PATIENTS )
 public class PatientController
 {
+	private final Logger logger = LogManager.getLogger( PatientController.class );
+
 	@Autowired
 	private PatientService patientService;
 
 	@GetMapping( PATH_ID )
 	public Patient getById( @PathVariable Long id ) throws NoPatientException
 	{
+		logger.trace( "TRACE LOG" );
+		logger.debug( "DEBUG LOG" );
+		logger.info( "INFO  LOG" );
+		logger.warn( "WARN  LOG" );
+		logger.error( "ERROR LOG" );
+		logger.fatal( "FATAL LOG" );
 		return patientService.getById( id );
 	}
 

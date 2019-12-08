@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN" monitorInterval="30">
+	<Properties>
+		<Property name="LOG_PATTERN">
+			%d{yyyy-MM-dd HH:mm:ss.SSS} %5p ${hostName} --- [%15.15t] %-50.50c : %m%n%ex
+		</Property>
+	</Properties>
+
+	<Appenders>
+		<File name="TraceFile" fileName="/Users/muratoz/Development/Workspace/logs/patientsystem/trace.log">
+			<PatternLayout pattern="${LOG_PATTERN}"/>
+		</File>
+		<Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
+			<PatternLayout pattern="${LOG_PATTERN}"/>
+		</Console>
+	</Appenders>
+	<Loggers>
+		<AsyncLogger name="com.patientsystem.controller" level="trace" additivity="true">
+			<AppenderRef ref="TraceFile"/>
+		</AsyncLogger>
+		<AsyncLogger name="com.patientsystem" level="debug" additivity="true">
+			<AppenderRef ref="ConsoleAppender"/>
+		</AsyncLogger>
+
+		<Root level="info">
+			<AppenderRef ref="ConsoleAppender"/>
+		</Root>
+	</Loggers>
+</Configuration>
